@@ -1,5 +1,7 @@
  // edited 8/17/17 by Ian, this uses the standard servo library that does not have speed control adjustment.
  //created to use in a simulator to refine the code.
+
+ //an edit
  
  #include <Servo.h> 
 
