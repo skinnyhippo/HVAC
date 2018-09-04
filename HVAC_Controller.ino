@@ -1,14 +1,11 @@
- // edited 8/17/17 by Ian, this uses the standard servo library that does not have speed control adjustment.
- //created to use in a simulator to refine the code.
+ // This is what is currently loaded, including the variable speed servo control.
 
- //an edit
- 
- #include <Servo.h> 
+#include <VarSpeedServo.h> 
 
-Servo myservo1;    // create servo object to control a servo            
-Servo myservo2;
-Servo myservo3;
-Servo myservo4;
+VarSpeedServo myservo1;    // create servo object to control a servo            
+VarSpeedServo myservo2;
+VarSpeedServo myservo3;
+VarSpeedServo myservo4;
 
 //INPUTS
 int zone1 = 1;  //pin1
@@ -20,15 +17,25 @@ int fanstatus = 5;
 
 
 //OUTPUTS
-int servo1pin = 7;
-int servo2pin = 8;
-int servo3pin = 9;
-int servo4pin = 10;
+int servo1 = 7;
+int servo2 = 8;
+int servo3 = 9;
+int servo4 = 10;
 
 int relay1 = 11;
 //int relay2 = 12;
 
 
+
+
+int speed = 25;
+//int s1open = 25;
+//int s1closed = 125;
+//int s2open = 0;
+//int s2closed = 170;
+//int potpin = 0;  // analog pin used to connect the potentiometer
+//int open = 90; 
+//int closed = 0;  
 
 void setup() { 
 pinMode(zone1, INPUT_PULLUP);     // Initialize  pin as input with an internal pull-up resistor
@@ -42,71 +49,91 @@ digitalWrite(relay1, LOW);
 //pinMode(relay2, OUTPUT);
 //digitalWrite(relay2, LOW);
 
-myservo1.attach(servo1pin);         //Initialize the servo attached to pin
-myservo1.write(125);
-myservo1.write(25);
+myservo1.attach(servo1);         //Initialize the servo attached to pin
+myservo1.write(125, 0, true);
+myservo1.write(25, 0, true);
+//delay(1000);
+//myservo1.write(125, 0, true);
+//myservo1.write(25, 0, true);
 myservo1.detach();
 
-myservo2.attach(servo2pin);         //Initialize the servo attached to pin
-myservo2.write(125);
-myservo2.write(25);
+myservo2.attach(servo2);         //Initialize the servo attached to pin
+myservo2.write(125, 0, true);
+myservo2.write(25, 0, true);
+delay(1000);
+//myservo1.write(125, 50, true);
+//myservo1.write(25, speed, true);
 myservo2.detach();
 
-myservo3.attach(servo3pin);         //Initialize the servo attached to pin
-myservo3.write(125);  
-myservo3.write(25);
+myservo3.attach(servo3);         //Initialize the servo attached to pin
+myservo3.write(125, 0, true);  
+myservo3.write(25, 0, true);
+//delay(1000);
+//myservo3.write(125, 50, true);
+//myservo3.write(25, speed, true);
 myservo3.detach();
 
-myservo4.attach(servo4pin);         //Initialize the servo attached to pin
-myservo4.write(125);  
-myservo4.write(25);
+myservo4.attach(servo4);         //Initialize the servo attached to pin
+myservo4.write(125, 0, true);  
+myservo4.write(25, 0, true);
+//delay(1000);
+//myservo3.write(125, 50, true);
+//myservo3.write(25, speed, true);
 myservo4.detach();
 } 
 
 int close_Z1(){
-myservo1.attach(servo1pin);
-    myservo1.write(25);
+myservo1.attach(servo1);
+    myservo1.write(25, speed, true);
+    //delay(1000);
     myservo1.detach();
 }
 
 int open_Z1(){
-  myservo1.attach(servo1pin);
-  myservo1.write(125);
+  myservo1.attach(servo1);
+  myservo1.write(125, speed, true);
+  //delay(1000);
   myservo1.detach();
 }
 
 int close_Z2(){
-myservo2.attach(servo2pin);
-    myservo2.write(25);
+myservo2.attach(servo2);
+    myservo2.write(25, speed, true);
+    //delay(1000);
     myservo2.detach();
 }
 
 int open_Z2(){
-  myservo2.attach(servo2pin);
-  myservo2.write(125);
+  myservo2.attach(servo2);
+  myservo2.write(125, speed, true);
+  //delay(1000);
   myservo2.detach();
 }
 
 int close_Z3(){
-myservo3.attach(servo3pin);
-    myservo3.write(25);
+myservo3.attach(servo3);
+    myservo3.write(25, speed, true);
+    //delay(1000);
     myservo3.detach();
 }
 
 int open_Z3(){
-  myservo3.attach(servo3pin);
-  myservo3.write(125);
+  myservo3.attach(servo3);
+  myservo3.write(125, speed, true);
+  //delay(1000);
   myservo3.detach();
 }
 int close_Z4(){
-myservo4.attach(servo4pin);
-    myservo4.write(25);
+myservo4.attach(servo4);
+    myservo4.write(25, speed, true);
+    //delay(1000);
     myservo4.detach();
 }
 
 int open_Z4(){
-  myservo4.attach(servo4pin);
-  myservo4.write(125);
+  myservo4.attach(servo4);
+  myservo4.write(125, speed, true);
+  //delay(1000);
   myservo4.detach();
 }
 
