@@ -1,9 +1,10 @@
-// single zone state change test.
 
-#include <Servo.h>
+// VarSpeedServo - Version: Latest 
+#include <VarSpeedServo.h>
+
 //Servo Objects
 int numServos = 4; //Change number of servos you want to use here
-Servo servo[4]; //Change number of servos you want to use here
+VarSpeedServo servo[4]; //Change number of servos you want to use here
 
 //SERVO OUTPUTS
 int ServoPin[] = {8,9,10,12}; //Choose digital pins used for servos
@@ -13,6 +14,9 @@ int input01 = 2, input02 = 3, input03 = 4, input04 = 5, input05 = 6;
 
 //States
 int zone01State, zone02State, zone03State, zone04State, lastZone01State, lastZone02State, lastZone03State, lastZone04State;
+
+int speed = 25;
+int speedTest = 25;
 
 //=======================================================
 
@@ -71,29 +75,30 @@ void loop() {
 
 int closeZone(int i){
     servo[i].attach(ServoPin[i]);
-    servo[i].write(25);
-    delay(2000);
+    servo[i].write(25, speed, true);
+    delay(1000);
     servo[i].detach();
 }
 
 int openZone(int i){
     servo[i].attach(ServoPin[i]);
-    servo[i].write(125);
-    delay(2000);
+    servo[i].write(125, speed, true);
+    delay(1000);
     servo[i].detach();
 }
 
 int servoTest(){
     for (int i = 0; i < numServos; i++){
+        delay(5000); // so i can get to that servo to watch it
         servo[i].attach(ServoPin[i]);
-        servo[i].write(25);
-        delay(1000);
-        servo[i].write(125);
-        delay(1000);
-        servo[i].write(25);
-        delay(1000);
-        servo[i].write(125); //finish in the open position.
-        delay(1000);
+        servo[i].write(25, speedTest, true);
+        //delay(1000);
+        servo[i].write(125, speedTest, true);
+        //delay(1000);
+        servo[i].write(25, speedTest, true);
+        //delay(1000);
+        servo[i].write(125, speedTest, true); //finish in the open position.
+        //delay(1000);
         servo[i].detach();
     }
 }
